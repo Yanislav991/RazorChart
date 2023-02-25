@@ -1,0 +1,2 @@
+# RazorChart
+Razor Chart component.

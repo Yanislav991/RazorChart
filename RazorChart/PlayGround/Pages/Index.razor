@@ -2,7 +2,8 @@
 @using RazorChart.Utility;
 
 <div class="test">Chart Playground</div>
-<RazorChart.RChart Width="300px"
+<RazorChart.RChart Width="700px"
+                   Title="Population"
                    Data="@ChartData">
 
 </RazorChart.RChart>
@@ -24,8 +25,8 @@
             Value = x.People,
             Color = x.Country == "Germany" ? "#F7C800" :
                     x.Country == "Japan" ? "#CE2A1D" :
-                    x.Country == "France" ? "#31B261" : 
-                    x.Country == "Russia" ? "#0037A1" : "white"
+                        x.Country == "France" ? "#31B261" :
+                        x.Country == "Russia" ? "#0037A1" : "white"
         }).ToList();
         base.OnInitialized();
     }

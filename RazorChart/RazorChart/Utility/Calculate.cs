@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace RazorChart.Utility
 {
     public static class Calculate
     {
+        private static Random rand = new Random();
         public static string Pie(int radius = 100, params int[] values)
         {
             var paths = new List<string>();
@@ -17,7 +19,7 @@ namespace RazorChart.Utility
             var data = values.Select(v => new Piece()
             {
                 Value = v,
-                Degrees = v / total * 360
+                Degrees = (decimal)v / total * 360
             }).ToList();
 
             foreach (var item in data.Select((value, i) => new { i, value }))
@@ -25,10 +27,10 @@ namespace RazorChart.Utility
                 var value = item.value;
                 var index = item.i;
 
-                if(index == 0)
+                if (index == 0)
                 {
-                    value.StartsFrom= 0;
-                    value.GoesTo= value.Degrees;
+                    value.StartsFrom = 0;
+                    value.GoesTo = value.Degrees;
                 }
                 else
                 {
@@ -48,10 +50,10 @@ namespace RazorChart.Utility
 
         private static string Path(string definition, int index)
         {
-            return $"<path d ='{definition}' class='type${index}'/>";
+            return $"<path d ='{definition}' class='type${index}' fill='{Color()}'/>";
         }
 
-        private static string PathDefinition(int radius, int startAngle, int endAngle)
+        private static string PathDefinition(int radius, decimal startAngle, decimal endAngle)
         {
             bool IsCircle = endAngle - startAngle == 360;
             if (IsCircle)
@@ -77,13 +79,18 @@ namespace RazorChart.Utility
             return definition;
         }
 
-        private static Point PolarToCartesian(int radius, int angleInDegrees)
+        private static Point PolarToCartesian(decimal radius, decimal angleInDegrees)
         {
-            var radians = (angleInDegrees - 90) * Math.PI / 180;
-            return new Point{
-                X= (int)Math.Round(radius + (radius * Math.Cos(radians))),
-                Y= (int)Math.Round(radius + (radius * Math.Sin(radians)))
+            var radians = (angleInDegrees - 90) * (decimal)Math.PI / 180;
+            return new Point
+            {
+                X = (int)Math.Round(radius + (radius * (decimal)Math.Cos((double)radians))),
+                Y = (int)Math.Round(radius + (radius * (decimal)Math.Sin((double)radians)))
             };
+        }
+        private static string Color()
+        {
+            return String.Format("#{0:X6}", rand.Next(0x1000000));
         }
     }
 

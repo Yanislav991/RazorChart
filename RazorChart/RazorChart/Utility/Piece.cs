@@ -8,9 +8,9 @@ namespace RazorChart.Utility
 {
     internal class Piece
     {
-        public int Value { get; set; }
-        public int Degrees { get; set; }
-        public int StartsFrom { get; set; }
-        public int GoesTo { get; set; }
+        public decimal Value { get; set; }
+        public decimal Degrees { get; set; }
+        public decimal StartsFrom { get; set; }
+        public decimal GoesTo { get; set; }
     }
 }

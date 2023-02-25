@@ -1,20 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RazorChart.Utility
+﻿namespace RazorChart.Utility
 {
     public static class Calculate
     {
         private static Random rand = new Random();
-        public static string Pie(int radius = 100, params int[] values)
+        public static IEnumerable<ChartSerie> Pie(int radius = 100, params int[] values)
         {
-            var paths = new List<string>();
+            var paths = new List<ChartSerie>();
             var total = values.Aggregate(0, (a, b) => a + b);
             var data = values.Select(v => new Piece()
             {
@@ -37,10 +28,14 @@ namespace RazorChart.Utility
                     value.StartsFrom = data[index - 1].GoesTo;
                     value.GoesTo = value.StartsFrom + value.Degrees;
                 }
-                var path = Path(PathDefinition(radius, value.StartsFrom, value.GoesTo), index);
-                paths.Add(path);
+                paths.Add(new ChartSerie()
+                {
+                    Color = Color(),
+                    Index = index,
+                    SerieDef = PathDefinition(radius, value.StartsFrom, value.GoesTo)
+                });
             }
-            return SvgPie(radius * 2, string.Join(" ", paths));
+            return paths;
         }
 
         private static string SvgPie(int width, string content)

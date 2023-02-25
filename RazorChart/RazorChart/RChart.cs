@@ -1,18 +1,16 @@
-﻿using RazorChart.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Components;
+using RazorChart.Utility;
 
 namespace RazorChart
 {
     public partial class RChart
     {
-        public string ChartMarkup { get; set; }
+        private List<ChartSerie> Series { get; set; }
+        [Parameter]
+        public string Width { get; set; } = "500px";
         protected override void OnInitialized()
         {
-            ChartMarkup = Calculate.Pie(radius:100, 1,2,3);
+            Series = Calculate.Pie(radius:100, 5, 2, 3, 4).ToList();
         }
     }
 }

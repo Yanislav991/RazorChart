@@ -1,5 +1,18 @@
-﻿<h3>RChart</h3>
-@((MarkupString)ChartMarkup)
+﻿
+<figure style="width:@Width">
+    <figcaption>
+        Chart
+    </figcaption>
+    <svg viewBox="0 0 200 200">
+        <g class='sectors'>
+            @foreach (var serie in Series)
+            {
+                <path d='@serie.SerieDef' class='series-@serie.Index' fill='@serie.Color' />
+            }
+        </g>
+    </svg>
+</figure>
+
 @code {
 
 }

@@ -16,7 +16,13 @@
             new Population(){ Country = "Germany", People=85000000},
             new Population(){ Country = "Japan", People=127000000},
             new Population(){ Country = "Russia", People=143000000},
-            new Population(){ Country = "France", People=65000000}
+            new Population(){ Country = "France", People=65000000},
+            new Population(){ Country = "Turkey", People=85000000},
+            new Population(){ Country = "USA", People=340000000},
+            new Population(){ Country = "UK", People=67000000},
+            new Population(){ Country = "Mexico", People=126000000},
+            new Population(){ Country = "Argentina", People=45000000},
+            new Population(){ Country = "Spain", People=50000000},
         };
 
         ChartData = chartData.Select(x => new MappedChartData
@@ -26,7 +32,7 @@
             Color = x.Country == "Germany" ? "#F7C800" :
                     x.Country == "Japan" ? "#CE2A1D" :
                         x.Country == "France" ? "#31B261" :
-                        x.Country == "Russia" ? "#0037A1" : "white"
+                        x.Country == "Russia" ? "#0037A1" : null
         }).ToList();
         base.OnInitialized();
     }

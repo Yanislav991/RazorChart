@@ -9,15 +9,15 @@ window.insertLabels = () => {
         var svg = x.ownerSVGElement;
 
         if (midpoint.x > 100) {
-            midpoint.x > 230 ? midpoint.x += 60 : midpoint.x += 20
+            midpoint.x > 230 ? midpoint.x += 30 : midpoint.x += 20
         } else {
-            midpoint.x < 230 ? midpoint.x -= 60 : midpoint.x -= 20
+            midpoint.x < 230 ? midpoint.x -= 30 : midpoint.x -= 20
         }
 
         if (midpoint.y > 100) {
-            midpoint.y > 230 ? midpoint.y += 60 : midpoint.y += 20
+            midpoint.y > 530 ? midpoint.y += 30 : midpoint.y += 10
         } else {
-            midpoint.y < 230 ? midpoint.y -= 60 : midpoint.y -= 20
+            midpoint.y < 530 ? midpoint.y -= 30 : midpoint.y -= 10
         }
         try {
 
@@ -34,6 +34,7 @@ function createText(x, y, childContent) {
     text.setAttribute("x", x);
     text.setAttribute("y", y);
     text.setAttribute("text-anchor", "middle");
+    text.setAttribute("font-size", "12px");
     text.textContent = childContent;
     return text;
 }

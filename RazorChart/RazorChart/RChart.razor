@@ -3,11 +3,19 @@
     <figcaption>
         @Title
     </figcaption>
-    <svg viewBox="-5 -5 210 210">
+    <svg viewBox="-205 -205 610 610">
         <g class='sectors'>
             @foreach (var serie in Series)
             {
-                <path d='@serie.SerieDef' class='series-@serie.Index' fill='@serie.Color' />
+                <path id="chart-serie-@serie.Index" 
+                      d='@serie.SerieDef'
+                      data-category='@serie.Category'
+                      data-val='@serie.Value'
+                      class='char-series'
+                      fill='@serie.Color'
+                      stroke="#fff"
+                      stroke-width="1"
+                      stroke-opacity="0.2" />
             }
         </g>
     </svg>

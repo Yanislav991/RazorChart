@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using RazorChart.Utility;
+
 
 namespace RazorChart
 {
@@ -18,6 +20,9 @@ namespace RazorChart
         [Parameter]
         public string Title { get; set; } = "Chart";
 
+        /// <summary>
+        /// Chart Data.
+        /// </summary>
         [Parameter]
         public IEnumerable<IChartData> Data { get; set; }
         #endregion
@@ -27,9 +32,17 @@ namespace RazorChart
         {
             Series = Calculate.PieSeries(Data.ToList());
         }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await JS.InvokeVoidAsync("insertLabels");
+        }
         #endregion
 
         #region Private Properties
+
+        [Inject]
+        public IJSRuntime JS { get; set; }
         private IEnumerable<ChartSerie> Series { get; set; }
         #endregion
     }

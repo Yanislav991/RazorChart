@@ -1,7 +1,7 @@
 ﻿@page "/"
 @using RazorChart.Utility;
 
-<div>Chart Playground</div>
+<div class="test">Chart Playground</div>
 <RazorChart.RChart Width="300px"
                    Data="@ChartData">
 
@@ -15,7 +15,7 @@
             new Population(){ Country = "Germany", People=85000000},
             new Population(){ Country = "Japan", People=127000000},
             new Population(){ Country = "Russia", People=143000000},
-            new Population(){ Country = "Bulgaria", People=5000000}
+            new Population(){ Country = "France", People=65000000}
         };
 
         ChartData = chartData.Select(x => new MappedChartData
@@ -24,7 +24,7 @@
             Value = x.People,
             Color = x.Country == "Germany" ? "#F7C800" :
                     x.Country == "Japan" ? "#CE2A1D" :
-                    x.Country == "Bulgaria" ? "#31B261" : 
+                    x.Country == "France" ? "#31B261" : 
                     x.Country == "Russia" ? "#0037A1" : "white"
         }).ToList();
         base.OnInitialized();

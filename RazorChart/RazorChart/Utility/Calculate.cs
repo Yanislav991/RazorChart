@@ -31,13 +31,12 @@ namespace RazorChart.Utility
                     value.StartsFrom = data[index - 1].GoesTo;
                     value.GoesTo = value.StartsFrom + value.Degrees;
                 }
-                var start = PolarToCartesian(radius, value.StartsFrom);
-                var end = PolarToCartesian(radius, value.GoesTo);
+
                 paths.Add(new ChartSerie()
                 {
                     Color = entities[index].Color != null ? entities[index].Color : Color(),
                     Index = index,
-                    SerieDef = PathDefinition(radius, value.StartsFrom, value.GoesTo, start, end),
+                    SerieDef = PathDefinition(radius, value.StartsFrom, value.GoesTo),
                     Value = entities[index].Value,
                     Category = entities[index].Category,
                 });
@@ -45,7 +44,7 @@ namespace RazorChart.Utility
             return paths;
         }
 
-        private static string PathDefinition(int radius, decimal startAngle, decimal endAngle, Point start, Point end)
+        private static string PathDefinition(int radius, decimal startAngle, decimal endAngle)
         {
             bool IsCircle = endAngle - startAngle == 360;
             if (IsCircle)
@@ -53,6 +52,9 @@ namespace RazorChart.Utility
                 endAngle--;
             }
             var largeArcFlag = endAngle - startAngle <= 180 ? 0 : 1;
+
+            var start = PolarToCartesian(radius, startAngle);
+            var end = PolarToCartesian(radius, endAngle);
 
             var definition = $"M {start.X} {start.Y} A {radius} {radius} 0 {largeArcFlag} 1 {end.X} {end.Y}";
 

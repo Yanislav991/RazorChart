@@ -3,10 +3,11 @@
     public static class Calculate
     {
         private static Random rand = new Random();
-        public static IEnumerable<ChartSerie> Pie(int radius = 100, params int[] values)
+        public static IEnumerable<ChartSerie> PieSeries(List<IChartData> entities, int radius = 100)
         {
             var paths = new List<ChartSerie>();
-            var total = values.Aggregate(0, (a, b) => a + b);
+            var values = entities.Select(x => x.Value);
+            var total = values.Sum();
             var data = values.Select(v => new Piece()
             {
                 Value = v,
@@ -30,22 +31,12 @@
                 }
                 paths.Add(new ChartSerie()
                 {
-                    Color = Color(),
+                    Color = entities[index].Color != null ? entities[index].Color : Color(),
                     Index = index,
                     SerieDef = PathDefinition(radius, value.StartsFrom, value.GoesTo)
                 });
             }
             return paths;
-        }
-
-        private static string SvgPie(int width, string content)
-        {
-            return $"<svg viewBox=\"0 0 {width} {width}\"><g class='sectors'>{content}</g></svg>";
-        }
-
-        private static string Path(string definition, int index)
-        {
-            return $"<path d ='{definition}' class='type${index}' fill='{Color()}'/>";
         }
 
         private static string PathDefinition(int radius, decimal startAngle, decimal endAngle)

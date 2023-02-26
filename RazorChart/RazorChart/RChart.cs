@@ -25,6 +25,12 @@ namespace RazorChart
         /// </summary>
         [Parameter]
         public IEnumerable<IChartData> Data { get; set; }
+
+        /// <summary>
+        /// If true the labes are shown
+        /// </summary>
+        [Parameter]
+        public bool ShowLabels { get; set; }
         #endregion
 
         #region Lifecycle events
@@ -35,7 +41,10 @@ namespace RazorChart
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            await JS.InvokeVoidAsync("insertLabels");
+            if(firstRender && ShowLabels == true)
+            {
+                await JS.InvokeVoidAsync("insertLabels");
+            }
         }
         #endregion
 

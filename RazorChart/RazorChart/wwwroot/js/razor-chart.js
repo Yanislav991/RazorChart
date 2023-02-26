@@ -14,10 +14,10 @@ window.insertLabels = () => {
             midpoint.x < 230 ? midpoint.x -= 30 : midpoint.x -= 20
         }
 
-        if (midpoint.y > 100) {
-            midpoint.y > 530 ? midpoint.y += 30 : midpoint.y += 10
+        if (midpoint.y > 70) {
+            midpoint.y > 150 ? midpoint.y += 30 : midpoint.y += 10
         } else {
-            midpoint.y < 530 ? midpoint.y -= 30 : midpoint.y -= 10
+            midpoint.y < 40 ? midpoint.y -= 30 : midpoint.y -= 10
         }
         try {
 
@@ -34,7 +34,7 @@ function createText(x, y, childContent) {
     text.setAttribute("x", x);
     text.setAttribute("y", y);
     text.setAttribute("text-anchor", "middle");
-    text.setAttribute("font-size", "12px");
+    text.setAttribute("font-size", "8px");
     text.textContent = childContent;
     return text;
 }

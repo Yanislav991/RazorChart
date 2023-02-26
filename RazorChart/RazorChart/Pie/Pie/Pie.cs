@@ -8,17 +8,19 @@ namespace RazorChart.Pie.Pie
     {
         [Inject]
         public IJSRuntime JS { get; set; }
+
         [Parameter]
         public IEnumerable<IChartData> Data { get; set; }
+
         [Parameter]
         public bool ShowLabels { get; set; }
 
 
-        private IEnumerable<PieChartSerie> serieList;
+        private IEnumerable<PieChartSerie> pieSerieList;
+
         protected override void OnInitialized()
         {
-            serieList = GeneratePie.PieSeries(Data.ToList());
-
+            pieSerieList = GeneratePie.PieSeries(Data.ToList());
             base.OnInitialized();
         }
         protected override async Task OnAfterRenderAsync(bool firstRender)

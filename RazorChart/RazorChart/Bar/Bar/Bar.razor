@@ -1,0 +1,37 @@
+﻿<svg class="razor-bar" width="960" height="500">
+    <g transform="translate(80,20)">
+        <g class="x axis" transform="translate(0,450)">
+            @for (int i = 0; i < Categories.Count(); i++)
+            {
+                <g class="tick" transform="translate(@(25.5+i*40),0)" style="opacity: 1;">
+                    <line y2="6" x2="0"></line>
+                    <text dy=".71em" y="9" x="0" style="text-anchor: middle;">@Categories[i]</text>
+                </g>
+            }
+            <path class="domain" d="M0,6V0H900V6"></path>
+        </g>
+        <g class="y axis">
+            <g class="tick" transform="translate(0,450)" style="opacity: 1;">
+                <line x2="-6" y2="0"></line>
+                <text dy=".32em" x="-9" y="0" style="text-anchor: end;">0</text>
+            </g>
+            @for (int i = 1; i <= 8; i++)
+            {
+                <g class="tick" transform="translate(0,@(450-56.25*i))" style="opacity: 1;">
+                    <line x2="-6" y2="0"></line>
+                    <text dy=".32em" x="-9" y="0" style="text-anchor: end;">@(yStep * i)</text>
+                </g>
+            }
+        </g>
+        @for (int i = 0; i < barSerieList.Count(); i++)
+        {
+            <rect class="bar" x="@(10 + i * 40)" width="31" y="@barSerieList[i].YCoord" height="@barSerieList[i].Height"></rect>
+        }
+        @*100% - 450 heigh/y=0*@
+    </g>
+</svg>
+
+<style>
+
+</style>
+

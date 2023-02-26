@@ -29,6 +29,22 @@
             new Population(){ Country = "Turkey", People=85000000},
         };
 
+        var barChartData = new List<DummyData>()
+        {
+            new DummyData(){ Category = "A", Value=2 },
+            new DummyData(){ Category = "B", Value=4 },
+            new DummyData(){ Category = "C", Value=6 },
+            new DummyData(){ Category = "D", Value=7 },
+            new DummyData(){ Category = "E", Value=10 },
+        };
+
+        BarChartData = barChartData.Select(x => new MappedChartData()
+            {
+                Category = x.Category,
+                Value = x.Value
+            }).ToList();
+
+
         ChartData = chartData.Select(x => new MappedChartData
         {
             Category = x.Country,
@@ -42,11 +58,17 @@
     }
 
     public List<MappedChartData> ChartData { get; set; }
+    public List<MappedChartData> BarChartData { get; set; }
 
     public class Population
     {
         public string Country { get; set; }
         public int People { get; set; }
+    }
+    public class DummyData
+    {
+        public int Value { get; set; }
+        public string Category { get; set; }
     }
     public class MappedChartData : IChartData
     {

@@ -1,3 +1,32 @@
 ﻿.test{
     font-size:50px;
 }
+
+.razor-bar .bar {
+    fill: #189ad3;
+    -webkit-filter: brightness(100%);
+}
+
+    .razor-bar .bar:hover {
+        -webkit-filter: brightness(70%);
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        transition: all 1s ease;
+    }
+
+.razor-bar .axis {
+    font: 10px sans-serif;
+}
+
+    .razor-bar .axis path,
+    .razor-bar .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+.razor-bar .x.axis path {
+    display: none;
+}

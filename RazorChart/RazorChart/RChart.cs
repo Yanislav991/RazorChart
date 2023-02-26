@@ -10,7 +10,6 @@ namespace RazorChart
 {
     public partial class RChart
     {
-        #region Parameters
         /// <summary>
         /// Specify the Width of the Chart.
         /// </summary>
@@ -40,6 +39,5 @@ namespace RazorChart
         /// </summary>
         [Parameter]
         public ChartType Type { get; set; } = ChartType.Pie;
-        #endregion
     }
 }

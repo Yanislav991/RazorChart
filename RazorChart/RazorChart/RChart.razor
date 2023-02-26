@@ -1,21 +1,18 @@
-﻿
+﻿@using RazorChart.Pie.PiePiece;
+
 <figure style="width:@Width">
     <figcaption>
         @Title
     </figcaption>
     <svg viewBox="-55 -55 310 310">
         <g class='sectors'>
-            @foreach (var serie in Series)
+            @foreach (var serie in PieSeries)
             {
-                <path id="chart-serie-@serie.Index" 
-                      d='@serie.SerieDef'
-                      data-category='@serie.Category'
-                      data-val='@serie.Value'
-                      class='char-series'
-                      fill='@serie.Color'
-                      stroke="#fff"
-                      stroke-width="1"
-                      stroke-opacity="0.2" />
+                <PiePiece Value="@serie.Value.ToString()"
+                          Category="@serie.Category"
+                          Color="@serie.Color"
+                          Definition="@serie.SerieDef"
+                          Index="@serie.Index.ToString()"/>
             }
         </g>
     </svg>

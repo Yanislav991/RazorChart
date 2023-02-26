@@ -1,6 +1,8 @@
-﻿namespace RazorChart.Utility
+﻿using RazorChart.Interfaces;
+
+namespace RazorChart.Pie
 {
-    public class ChartSerie : IChartData
+    public class PieChartSerie : IChartData
     {
         public string SerieDef { get; set; }
         public string Color { get; set; }

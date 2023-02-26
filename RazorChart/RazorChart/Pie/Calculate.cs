@@ -1,13 +1,13 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using RazorChart.Interfaces;
 
-namespace RazorChart.Utility
+namespace RazorChart.Pie
 {
-    public static class Calculate
+    public static class CalculatePie
     {
         private static Random rand = new Random();
-        public static IEnumerable<ChartSerie> PieSeries(List<IChartData> entities, int radius = 100)
+        public static IEnumerable<PieChartSerie> PieSeries(List<IChartData> entities, int radius = 100)
         {
-            var paths = new List<ChartSerie>();
+            var paths = new List<PieChartSerie>();
             var values = entities.Select(x => x.Value);
             var total = values.Sum();
             var data = values.Select(v => new Piece()
@@ -32,7 +32,7 @@ namespace RazorChart.Utility
                     value.GoesTo = value.StartsFrom + value.Degrees;
                 }
 
-                paths.Add(new ChartSerie()
+                paths.Add(new PieChartSerie()
                 {
                     Color = entities[index].Color != null ? entities[index].Color : Color(),
                     Index = index,
@@ -74,13 +74,13 @@ namespace RazorChart.Utility
             var radians = (angleInDegrees - 90) * (decimal)Math.PI / 180;
             return new Point
             {
-                X = (int)Math.Round(radius + (radius * (decimal)Math.Cos((double)radians))),
-                Y = (int)Math.Round(radius + (radius * (decimal)Math.Sin((double)radians)))
+                X = (int)Math.Round(radius + radius * (decimal)Math.Cos((double)radians)),
+                Y = (int)Math.Round(radius + radius * (decimal)Math.Sin((double)radians))
             };
         }
         private static string Color()
         {
-            return String.Format("#{0:X6}", rand.Next(0x1000000));
+            return string.Format("#{0:X6}", rand.Next(0x1000000));
         }
     }
 

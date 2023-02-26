@@ -1,4 +1,4 @@
-﻿namespace RazorChart.Utility
+﻿namespace RazorChart.Pie
 {
     internal class Point
     {

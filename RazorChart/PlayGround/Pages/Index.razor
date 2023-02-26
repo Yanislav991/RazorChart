@@ -1,7 +1,16 @@
 ﻿@page "/"
-@using RazorChart.Utility;
+@using RazorChart.Interfaces;
+@using RazorChart.Enums;
 
 <div class="test">Chart Playground</div>
+
+<RazorChart.RChart Width="300px"
+                   ShowLabels="@true"
+                   Title="Population"
+                   Type="ChartType.Bar"
+                   Data="@ChartData">
+</RazorChart.RChart>
+
 <RazorChart.RChart Width="300px"
                    ShowLabels="@true"
                    Title="Population"
@@ -18,11 +27,6 @@
             new Population(){ Country = "Russia", People=143000000},
             new Population(){ Country = "France", People=65000000},
             new Population(){ Country = "Turkey", People=85000000},
-            //new Population(){ Country = "USA", People=340000000},
-            //new Population(){ Country = "UK", People=67000000},
-            //new Population(){ Country = "Mexico", People=126000000},
-            //new Population(){ Country = "Argentina", People=45000000},
-            //new Population(){ Country = "Spain", People=50000000},
         };
 
         ChartData = chartData.Select(x => new MappedChartData

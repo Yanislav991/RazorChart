@@ -25,13 +25,8 @@
         </g>
         @for (int i = 0; i < barSerieList.Count(); i++)
         {
-            <rect class="bar" x="@(10 + i * 40)" width="31" y="@barSerieList[i].YCoord" height="@barSerieList[i].Height"></rect>
+            <rect class="bar" x="@(10 + i * 40)" width="31" fill="@(barSerieList[i].Color != null ? barSerieList[i].Color : "#189ad3") " y="@barSerieList[i].YCoord" height="@barSerieList[i].Height"></rect>
         }
         @*100% - 450 heigh/y=0*@
     </g>
 </svg>
-
-<style>
-
-</style>
-

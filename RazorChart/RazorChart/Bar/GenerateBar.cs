@@ -15,7 +15,8 @@ namespace RazorChart.Bar
             return chartDatas.Select(x => new BarRect
             {
                 Height = x.Value / maxVal * 450,
-                YCoord = 450 - (x.Value / maxVal * 450)
+                YCoord = 450 - (x.Value / maxVal * 450),
+                Color = x.Color
             }) ;
         }
     }

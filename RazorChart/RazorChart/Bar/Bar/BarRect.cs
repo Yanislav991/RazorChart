@@ -10,5 +10,6 @@ namespace RazorChart.Bar.Bar
     {
         public decimal Height { get; set; }
         public decimal YCoord { get; set; }
+        public string Color { get; set; }
     }
 }

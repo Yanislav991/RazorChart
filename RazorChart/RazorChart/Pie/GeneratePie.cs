@@ -2,7 +2,7 @@
 
 namespace RazorChart.Pie
 {
-    public static class CalculatePie
+    public static class GeneratePie
     {
         private static Random rand = new Random();
         public static IEnumerable<PieChartSerie> PieSeries(List<IChartData> entities, int radius = 100)

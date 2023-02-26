@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using RazorChart.Bar;
 using RazorChart.Enums;
 using RazorChart.Interfaces;
 using RazorChart.Pie;
@@ -39,29 +40,6 @@ namespace RazorChart
         /// </summary>
         [Parameter]
         public ChartType Type { get; set; } = ChartType.Pie;
-        #endregion
-
-        #region Lifecycle events
-        protected override void OnInitialized()
-        {
-            PieSeries = CalculatePie.PieSeries(Data.ToList());
-        }
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if(firstRender && ShowLabels == true)
-            {
-                await JS.InvokeVoidAsync("insertLabels");
-            }
-        }
-        #endregion
-
-        #region Private Properties
-
-        [Inject]
-        public IJSRuntime JS { get; set; }
-        private IEnumerable<PieChartSerie> PieSeries { get; set; }
-        private IEnumerable<BarChartSerie> BarSeries { get; set; }
         #endregion
     }
 }
